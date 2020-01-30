@@ -1,2 +1,55 @@
 = Getting started with Apiman: Overview, Installation & Setting up a Provider and Consumer
 :experimental:
+
+== Document Purpose
+
+This document explains in detail on how to get started with the Apiman project, product installation guide, the prerequisites and a basic demonstration of how to configure an API provider and consumer.  
+
+== Apiman Overview
+
+API management is the process of governing, publishing, managing and testing the APIs and it is a method of ensuring that an organisation’s public APIs are safe and consumable by third party developers and applications. While offering basic features, API management is often used for more instances such as to collect user statistics and subscriber details, analyzing the user data and to produce insightful reports that can leverage an organisation’s success.
+
+Apiman is RedHat’s open-source API management project and a development methodology that is employed to provide a rich and faster API design. For an API provider and consumer, apiman is responsible for two essential aspects of a product life cycle,
+
+. *API Manager* - Defining policies to govern the rate at which consumers access an application’s API. 
+. *API Gateway* - Applying the defined policies in runtime and tracking the consumer usage of the APIs.
+
+Let’s look further on how to install and get started with an apiman project.
+
+== Prerequisites
+
+Before getting started with the apiman installation make sure you have the following items already installed on your machine,
+
+. *Java* (version 8+)
+. *Winzip* (or any other unzip utility)
+
+In addition to this, to run an apiman project you will need to download Wildfly 10 from the official website which will be explained in the following section. 
+
+== Downloading Apiman
+
+Downloading apiman is pretty straightforward and can be done in a few simple steps. 
+
+. Visit the apiman official site link:http://www.apiman.io/latest/download.html[http://www.apiman.io/latest/download.html]
+. First download *Wildfly* (version 10.1.0) from the provided link. Wildfly is a platform that runs apiman.
+. Once the download is complete, proceed with downloading the Apiman (version 1.5.5) from the same website. 
+. Both Wildfly and Apiman will be downloaded as a .zip file. Now continue with the installation.
+
+== Installing & Getting Started with Apiman
+
+To install Apiman you first need to install Wildfly which can be done in a few simple steps.
+
+. Unzip the downloaded Wildfly files onto a directory of your choice.
+[command]`unzip wildfly-10.1.0.Final.zip`
+
+. Since apiman is built as an overlay on top of the wildfly environment, you will simply need to just unzip the apiman folder onto the same directory as wildfly. [command]`unzip -o apiman-distro-wildfly10-1.5.5.Final-overlay.zip -d wildfly-10.1.0.Final`
+*Note:* Apiman comes with a pre-defined set of configurations and the standalone xml file that is required to quickstart the process. 
+
+. Once installed all you have to do is to navigate to the Wildfly directory and start the standalone xml to quickstart the apiman project.
+[command]`cd wildfly-10.1.0.Final
+./bin/standalone.sh -c standalone-apiman.xml
+`
+. a
+
+
+
+
