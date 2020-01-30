@@ -129,11 +129,39 @@ Once the policies and plans are in place, we could create a new sample service a
 
 Once the services are published, the APIs are officially available for the app developers to consume. 
 
+=== Service Consumer:
+
 Now, the following steps will help you get started as an application developer (service consumer) with Apiman.
 
+. Login to apiman web user interface as the consumer using your developer credentials.
+. Retrace the same steps to create a new organisation except this time you will be creating it for an application.
+*Note:* From an application developer’s perspective we don’t need to create plans or services since we will be directly consuming them from the echo service which we created earlier. You can straight away go ahead to create a new application.
+. Select the btn:[[Applications]] tab and click on btn:[[New App]]. Fill out the form with necessary details and click btn:[[Create Application]].
+. After creating a new application, we will need to create contracts to access the echo service. In the new application, navigate to Contracts section. Select the btn:[[Search for services to consume]] option which will allow you to search for the echo service which we created. 
+. In the btn:[Find Service] menu, type the relevant keyword to locate the required service. In this case the keyword could be [command]`echo`.
+. Once the echo service is located and selected, you will be allowed to choose from the list of plans which the service has to offer. Select the convenient plan for you and  click in btn:[[Create Contract]].
+. Once the plan has been chosen, you will be presented with the configuration details of the selected plan which you could just verify along with the terms and conditions for consuming that service. Once verified, click on btn:[[Create Contract]]. 
 
+Now we have an application with one active service contract. You can create more contracts if required. 
 
+Since the required contract is now active, it's time to register the application with the API gateway. To do that, simply click on the ‘Register’ option under ‘My Applications’. Now your application has been registered with the API gateway which means you can start sending the API requests to consume the echo service. 
 
+Since echo is a REST web service you can use any one of the available REST testing services online to send requests and analyse the response.
+
+== Testing the API Authentication Policy
+
+There are 2 ways to test the defined API authentication policy or any policies for that matter. 
+
+. *Unmanaged Testing* - Accessing the echo service directly
+. *Managed Testing* - Accessing the echo service via the API gateway
+
+Managed testing is the usual standards while accessing any APIs which are available online. To invoke a managed testing, you will require the unique API key determined by the service provider. 
+
+*Note:* You can get the appropriate URL for this from the btn:[[APIs]] tab for the Application. This tab lists all of the application’s contracts, and allows you to copy the managed endpoints.
+
+When the url is invoked with this api key, the request goes to the API gateway and invoked the basic authentication function which we have set from our provider account. This testing ensure that from there on only authorised users can access & use the APIs.
+
+//end
 
 
 
