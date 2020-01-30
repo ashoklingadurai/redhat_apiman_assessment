@@ -1,0 +1,181 @@
+= Getting started with Apiman: Overview, Installation & Setting up a Provider and Consumer
+:experimental:
+
+== Document Purpose
+
+This document explains in detail on how to get started with the Apiman project, product installation guide, the prerequisites and a basic demonstration of how to configure an API provider and consumer.  
+
+== Contents
+
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#apiman-overview[Apiman Overview]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#prerequisites[Prerequisites]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#downloading-apiman[Downloading Apiman]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#installing-and-getting-started-with-apiman[Installing & Getting Started with Apiman]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#configuring-apiman-definitions[Configuring Apiman Definitions]
+** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#role-definitions[Role Definitions]
+** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#policy-definitions[Policy Definitions]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#working-with-apiman[Working with Apiman]
+** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#service-provider[Service Provider]
+** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#service-consumer[Service Consumer]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#testing-the-api-authentication-policy[Testing the API Authentication Policy]
+
+
+== Apiman Overview
+
+API management is the process of governing, publishing, managing and testing the APIs and it is a method of ensuring that an organisation’s public APIs are safe and consumable by third party developers and applications. While offering basic features, API management is often used for more instances such as to collect user statistics and subscriber details, analyzing the user data and to produce insightful reports that can leverage an organisation’s success.
+
+Apiman is RedHat’s open-source API management project and a development methodology that is employed to provide a rich and faster API design. For an API provider and consumer, apiman is responsible for two essential aspects of a product life cycle,
+
+. *API Manager* - Defining policies to govern the rate at which consumers access an application’s API. 
+. *API Gateway* - Applying the defined policies in runtime and tracking the consumer usage of the APIs.
+
+Let’s look further on how to install and get started with an apiman project.
+
+== Prerequisites
+
+Before getting started with the apiman installation make sure you have the following items already installed on your machine,
+
+. *Java* (version 8+)
+. *Winzip* (or any other unzip utility)
+
+In addition to this, to run an apiman project you will need to download Wildfly 10 from the official website which will be explained in the following section. 
+
+== Downloading Apiman
+
+Downloading apiman is pretty straightforward and can be done in a few simple steps. 
+
+. Visit the apiman official site link:http://www.apiman.io/latest/download.html[http://www.apiman.io/latest/download.html]
+. First download *Wildfly* (version 10.1.0) from the provided link. Wildfly is a platform that runs apiman.
+. Once the download is complete, proceed with downloading the Apiman (version 1.5.5) from the same website. 
+. Both Wildfly and Apiman will be downloaded as a .zip file. Now continue with the installation.
+
+== Installing and Getting Started with Apiman
+
+To install Apiman you first need to install Wildfly which can be done in a few simple steps.
+
+. Unzip the downloaded Wildfly files onto a directory of your choice.
+[command]`unzip wildfly-10.1.0.Final.zip`
+
+. Since apiman is built as an overlay on top of the wildfly environment, you will simply need to just unzip the apiman folder onto the same directory as wildfly. [command]`unzip -o apiman-distro-wildfly10-1.5.5.Final-overlay.zip -d wildfly-10.1.0.Final`
+*Note:* Apiman comes with a pre-defined set of configurations and the standalone xml file that is required to quickstart the process. 
+
+. Once installed all you have to do is to navigate to the Wildfly directory and start the standalone xml to quickstart the apiman project.
+[command]`cd wildfly-10.1.0.Final`
+To start the xml [command]`./bin/standalone.sh -c standalone-apiman.xml`
+*Note:* Initially, allow a few seconds for Wildfly to startup.
+
+. Once done, you can now access the apiman user interface via any web browser. Just open a web browser and point the address to link:http://localhost:8080/apiman-manager/[localhost:8080/apiman-manager/]
+. For new users, login using the default username `admin` and password `admin123!`
+
+*Note:* We strongly recommend developers to change the default password to a more secure phrase using the admin console which can be reached by pointing your web browser to link:http://localhost:8080/auth/admin[localhost:8080/auth/admin/]
+
+Now the Apiman is setup and is ready for business.
+
+== Configuring Apiman Definitions
+
+Now that the Apiman has been freshly installed we need to configure it. Before making the services available to the developers, a service provider must configure the following important settings,
+
+. Defining user roles
+. Defining policies
+
+*Note:* Both these settings are to be configured by an authorised admin for the service providing organisation.
+
+=== Role Definitions:
+Creating role definitions will allow members of an organisation to have specific privileges while accessing the API services. Each access privileges for an employee might differ based on their responsibilities. 
+
+To set the required role definitions,
+
+. Login to the apiman web interface using the service provider (organisation) admin credentials. 
+. Navigate to btn:[Manage Roles/Permissions] under btn:[System Administration] which will lead you to the Role Management page. In this page you can create, modify and delete role definitions based on your requirements. 
+. Go ahead and click on btn:[[New Role]].
+. Fill out the form using the appropriate values. For instance, for creating a role for an Application Developer select the checkboxes that they can access.
+*Note:* If you would like to create multiple organisations and want the role defined to have the same set of privileges then it is recommended to select the ‘Grant this role automatically when creating a new organisation’ checkbox when creating a new role.
+. Once done, click btn:[[Create Role]].
+
+=== Policy Definitions:
+
+Defining policies is an important step in API management so that a predefined set of policies can be set by the services provider. These policies ensure that the users do not misuse your organisation’s APIs.
+
+To set the respective policy definitions,
+
+. Navigate to btn:[Manage Policy Definitions] under btn:[System Administration} which will lead you to the Policy Definitions page. In this page, you can import policy definitions by copying the respective json data. 
+. Currently the policy definitions are imported into the system by copying the JSON data found in the [filename]`all-policyDefs.json` file, which is included in the apiman distribution zip in the [filename]`wildfly/apiman/data` directory.
+. You can either open up that file and copy its contents into the text area on the Import Policy Definitions page.
+. Once done, click on btn:[[Import]].
+. The list of imported policy definitions would be displayed on the next page. Once you approve the imported list, click btn:[[Yes]] to finally import the defined policies into the interface. 
+
+The service provider can impose selected policy definitions to users/developers accessing their APIs based on their requirement. 
+
+== Working with Apiman
+
+This section will take you step-by-step by demonstrating how to configure an API provider and a consumer (app developer) as well as test a policy definition using the echo service. When working with apiman we usually deal with the following two types of users,
+
+. *Service Provider* - The organisation that defines and governs their API standards.
+. *Service Consumer* - The app developer who access the organisation’s services via the predefined APIs set by that company.
+
+=== Service Provider:
+
+To demonstrate how to create an organisation and all its associated entities such as plans and services we will be working with the already deployed echo REST service.
+
+The basic idea behind this workflow is that a service provider creates an organisation and is responsible for setting up the different plans and services for the developers to consume and push it to the API gateway so that developers can access the services whilst agreeing to the  policies.
+
+To setup a service provider,
+
+. Login to the apiman web interface using the service provider account.
+. Navigate to btn:[[Create New Organisations]] under btn:[Organisations] menu. The plans and services will be further created under this new organisation 
+. After entering a relevant organisation name and description, click btn:[[Create Organisation]].
+. Under this newly created organisation, create a new plan by clicking on the btn:[[New Plan]] option. Update the Plan name, version and description & further proceed to create new plans if necessary. 
+*Note:* You can create as many flexible plans from which consumers can choose from. 
+. Once the plans are created, you will have to set the rate limiting policy to prevent users from misusing the APIs. To set the policy, select the plan from the list of defined plans.
+. Navigate to menu:Policies[Add Policy].
+. Select btn:[Rate Limiting Policy] from the dropdown and manually set the number of requests that is allowed to access the app services per a set of time period (say a month, a week, a day or a minute, etc).
+*Note:* Once you have defined the rate limiting policy, select the btn:[[Lock Plan]] option. The lock plan option is just to ensure that the said plan is ready to be used in services. 
+Once the policies and plans are in place, we could create a new sample service as follows.
+. Navigate to your newly created organisation and select the btn:[[services]] tab. Click on btn:[[New Service]].
+. Once the relevant service name, description and version are updated select btn:[[Create Service]].
+*Note:* You will have the flexibility to change the organisation from the dropdown menu while creating a new service. 
+. After creating a service, you will need to configure it based on the requirements. Navigate to the newly created service and select btn:[[Implementation]].
+. Under btn:[Service Implementation] you will have to specify the API endpoint and its type. In this demonstration, we will use the echo endpoint which is already deployed while installing Apiman. Specify the echo API endpoint as follows link:http://localhost:8080/services/echo[http://localhost:8080/services/echo]
+. For this demonstration we will select the API Type as [command]`REST`.
+. Next, select the plans which you want to be available when API consumers wants to create contracts with your services and make sure you save the selections.
+. The next step is to enforce policies for this service. Select the policy menu and click on btn:[[Add Policy]].
+. Select the necessary policies that you would like to enforce when an app developer creates a contract with your service. In this example we will select the basic authentication policy. 
+. Once the policies are enabled, we can publish this service to our API gateway by selecting btn:[[Publish]] from the services menu.
+
+Once the services are published, the APIs are officially available for the app developers to consume. 
+
+=== Service Consumer:
+
+Now, the following steps will help you get started as an application developer (service consumer) with Apiman.
+
+. Login to apiman web user interface as the consumer using your developer credentials.
+. Retrace the same steps to create a new organisation except this time you will be creating it for an application.
+*Note:* From an application developer’s perspective we don’t need to create plans or services since we will be directly consuming them from the echo service which we created earlier. You can straight away go ahead to create a new application.
+. Select the btn:[[Applications]] tab and click on btn:[[New App]]. Fill out the form with necessary details and click btn:[[Create Application]].
+. After creating a new application, we will need to create contracts to access the echo service. In the new application, navigate to Contracts section. Select the btn:[[Search for services to consume]] option which will allow you to search for the echo service which we created. 
+. In the btn:[Find Service] menu, type the relevant keyword to locate the required service. In this case the keyword could be [command]`echo`.
+. Once the echo service is located and selected, you will be allowed to choose from the list of plans which the service has to offer. Select the convenient plan for you and  click in btn:[[Create Contract]].
+. Once the plan has been chosen, you will be presented with the configuration details of the selected plan which you could just verify along with the terms and conditions for consuming that service. Once verified, click on btn:[[Create Contract]]. 
+
+Now we have an application with one active service contract. You can create more contracts if required. 
+
+Since the required contract is now active, it's time to register the application with the API gateway. To do that, simply click on the ‘Register’ option under ‘My Applications’. Now your application has been registered with the API gateway which means you can start sending the API requests to consume the echo service. 
+
+Since echo is a REST web service you can use any one of the available REST testing services online to send requests and analyse the response.
+
+== Testing the API Authentication Policy
+
+There are 2 ways to test the defined API authentication policy or any policies for that matter. 
+
+. *Unmanaged Testing* - Accessing the echo service directly
+. *Managed Testing* - Accessing the echo service via the API gateway
+
+Managed testing is the usual standards while accessing any APIs which are available online. To invoke a managed testing, you will require the unique API key determined by the service provider. 
+
+*Note:* You can get the appropriate URL for this from the btn:[[APIs]] tab for the Application. This tab lists all of the application’s contracts, and allows you to copy the managed endpoints.
+
+When the url is invoked with this api key, the request goes to the API gateway and invoked the basic authentication function which we have set from our provider account. This testing ensure that from there on only authorised users can access & use the APIs.
+
+//end
+
+
