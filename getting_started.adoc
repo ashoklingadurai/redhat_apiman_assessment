@@ -5,6 +5,10 @@
 
 This document explains in detail on how to get started with the Apiman project, product installation guide, the prerequisites and a basic demonstration of how to configure an API provider and consumer.  
 
+== Contents
+
+link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#apiman-overview[Apiman Overview]
+
 == Apiman Overview
 
 API management is the process of governing, publishing, managing and testing the APIs and it is a method of ensuring that an organisation’s public APIs are safe and consumable by third party developers and applications. While offering basic features, API management is often used for more instances such as to collect user statistics and subscriber details, analyzing the user data and to produce insightful reports that can leverage an organisation’s success.
