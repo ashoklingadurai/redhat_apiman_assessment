@@ -44,7 +44,9 @@ To install Apiman you first need to install Wildfly which can be done in a few s
 . Since apiman is built as an overlay on top of the wildfly environment, you will simply need to just unzip the apiman folder onto the same directory as wildfly. [command]`unzip -o apiman-distro-wildfly10-1.5.5.Final-overlay.zip -d wildfly-10.1.0.Final`
 *Note:* Apiman comes with a pre-defined set of configurations and the standalone xml file that is required to quickstart the process. 
 
-
+. Once installed all you have to do is to navigate to the Wildfly directory and start the standalone xml to quickstart the apiman project.
+[command]`cd wildfly-10.1.0.Final`
+To start the xml [command]`./bin/standalone.sh -c standalone-apiman.xml`
 
 
 
