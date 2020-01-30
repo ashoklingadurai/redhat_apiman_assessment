@@ -47,6 +47,9 @@ To install Apiman you first need to install Wildfly which can be done in a few s
 . Once installed all you have to do is to navigate to the Wildfly directory and start the standalone xml to quickstart the apiman project.
 [command]`cd wildfly-10.1.0.Final`
 To start the xml [command]`./bin/standalone.sh -c standalone-apiman.xml`
+*Note:* Initially, allow a few seconds for Wildfly to startup.
+
+. Once done, you can now access the apiman user interface via any web browser. Just open a web browser and point the address to link:localhost:8080/apiman-manager/[localhost:8080/apiman-manager/]
 
 
 
