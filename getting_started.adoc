@@ -49,7 +49,7 @@ Downloading apiman is pretty straightforward and can be done in a few simple ste
 . Once the download is complete, proceed with downloading the Apiman (version 1.5.5) from the same website. 
 . Both Wildfly and Apiman will be downloaded as a .zip file. Now continue with the installation.
 
-== Installing & Getting Started with Apiman
+== Installing and Getting Started with Apiman
 
 To install Apiman you first need to install Wildfly which can be done in a few simple steps.
 
