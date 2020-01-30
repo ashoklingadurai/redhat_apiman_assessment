@@ -10,7 +10,7 @@ This document explains in detail on how to get started with the Apiman project, 
 * link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#apiman-overview[Apiman Overview]
 * link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#prerequisites[Prerequisites]
 * link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#downloading-apiman[Downloading Apiman]
-* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#installing--getting-started-with-apiman[Installing & Getting Started with Apiman]
+* link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#installing-and-getting-started-with-apiman[Installing & Getting Started with Apiman]
 * link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#configuring-apiman-definitions[Configuring Apiman Definitions]
 ** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#role-definitions[Role Definitions]
 ** link:https://github.com/ashoklingadurai/redhat_apiman_assessment/blob/master/getting_started.adoc#policy-definitions[Policy Definitions]
